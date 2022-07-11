@@ -1,23 +1,26 @@
-class Status {
-  String current = "TO DO";
+import 'package:simple_todo/common/constant.dart';
 
-  Status();
+class Status {
+  String current;
+
+  Status({this.current = kTodo});
 
   @override
   String toString() {
-    // TODO: implement toString
     return current;
   }
 
+  get getCurrent => current;
+
   void setTodo() {
-    current = "TO DO";
+    current = kTodo;
   }
 
   void setInprogress() {
-    current = "IN PROGRESS";
+    current = kInprogress;
   }
 
   void setComplete() {
-    current = "COMPLETE";
+    current = kComplete;
   }
 }

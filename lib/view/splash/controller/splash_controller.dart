@@ -1,8 +1,22 @@
-import 'package:get/get.dart';
+import 'dart:async';
 
-class SplashController  extends GetxController {
+import 'package:get/get.dart';
+import 'package:simple_todo/utils/route.dart';
+
+class SplashController extends GetxController {
+  var _isLoading = true.obs;
+  get isLoading => _isLoading;
+
   @override
   void onInit() {
     super.onInit();
+    launchApp();
+  }
+
+  launchApp() {
+    Timer(const Duration(seconds: 3), () {
+      _isLoading = false.obs;
+      // Get.offAllNamed(homeRoute);
+    });
   }
 }

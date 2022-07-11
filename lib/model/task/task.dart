@@ -36,10 +36,10 @@ class Task extends HiveObject {
       this.startTime,
       this.endTime,
       this.status,
-      this.description}){
-        this.id = ++taskId;
-        this.status = Status();
-      }
+      this.description}) {
+    id = ++taskId;
+    status = Status();
+  }
 
   @override
   String toString() {

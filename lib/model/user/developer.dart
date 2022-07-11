@@ -1,6 +1,4 @@
-import 'package:simple_todo/model/user/user.dart';
-
-class Developer{
+class Developer {
   static const String _name = "Nur Fajar Sayyidul Ayyam";
   static const String _role = "Mobile Developer - UI/UX Designer";
   static const String _nickname = "Fajar";

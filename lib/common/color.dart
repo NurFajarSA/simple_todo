@@ -1,6 +1,7 @@
 part of 'constant.dart';
 
 const kPrimaryColor = Color(0xFF5038BC);
+const kSecondaryBlue = Color(0xFF64E6FB);
 const kWhite = Color(0xFFFFFFFF);
 const kDark = Color(0xFF333333);
 const kDanger = Color(0xFFEB5757);

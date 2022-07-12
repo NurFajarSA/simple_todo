@@ -15,7 +15,7 @@ class User {
     int temp = 0;
     if (tasks.isNotEmpty) {
       for (var task in tasks) {
-        if (task.status?.current == kTodo) {
+        if (task.status == kTodo) {
           temp++;
         }
       }
@@ -27,7 +27,7 @@ class User {
     int temp = 0;
     if (tasks.isNotEmpty) {
       for (var task in tasks) {
-        if (task.status?.current == kInprogress) {
+        if (task.status == kInprogress) {
           temp++;
         }
       }
@@ -39,7 +39,7 @@ class User {
     int temp = 0;
     if (tasks.isNotEmpty) {
       for (var task in tasks) {
-        if (task.status?.current == kComplete) {
+        if (task.status == kComplete) {
           temp++;
         }
       }

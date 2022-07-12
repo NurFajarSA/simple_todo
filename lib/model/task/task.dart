@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:simple_todo/model/task/status.dart';
 
 part 'task.g.dart';
 
@@ -24,7 +23,7 @@ class Task extends HiveObject {
   TimeOfDay? endTime;
 
   @HiveField(5)
-  Status? status;
+  String? status;
 
   @HiveField(6)
   String? description;
@@ -38,7 +37,6 @@ class Task extends HiveObject {
       this.status,
       this.description}) {
     id = ++taskId;
-    status = Status();
   }
 
   @override

@@ -2,21 +2,14 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:simple_todo/common/constant.dart';
 import 'package:simple_todo/model/task/task.dart';
+import 'package:simple_todo/utils/route.dart';
 
 class HomeController extends GetxController {
-  late Box<Task> todoBox;
-  late Box<Task> inprogressBox;
-  late Box<Task> completeBox;
+  final todoBox = Hive.box<Task>(kTodo).obs;
+  final inprogressBox = Hive.box<Task>(kInprogress).obs;
+  final completeBox = Hive.box<Task>(kComplete).obs;
 
-  @override
-  void onInit() {
-    super.onInit();
-    todoBox = Hive.box<Task>(kTodo);
-    inprogressBox = Hive.box<Task>(kInprogress);
-    completeBox = Hive.box<Task>(kComplete);
-  }
-
-  Box<Task> getData({required String section}) {
+  Rx<Box<Task>> getData({required String section}) {
     switch (section) {
       case kTodo:
         return todoBox;
@@ -27,19 +20,60 @@ class HomeController extends GetxController {
     }
   }
 
-  int countTodo() {
-    return todoBox.length;
+  String getIcon(String section) {
+    switch (section) {
+      case kTodo:
+        return 'assets/icons/todo_icon.png';
+      case kInprogress:
+        return 'assets/icons/inprogress_icon.png';
+      default:
+        return 'assets/icons/complete_icon.png';
+    }
   }
 
-  int countInprogress() {
-    return inprogressBox.length;
+  createTask() {
+    Get.toNamed(createTaskRoute);
   }
 
-  int countComplete() {
-    return completeBox.length;
+  deleteTask(String section, int index) {
+    if (section == null)
+      return;
+    else if (section == kTodo) {
+      todoBox.value.deleteAt(index);
+    } else if (section == kInprogress) {
+      inprogressBox.value.deleteAt(index);
+    } else {
+      completeBox.value.deleteAt(index);
+    }
+    update();
   }
 
-  int totalTask() {
-    return todoBox.length + inprogressBox.length + completeBox.length;
+  int get totalTodo => todoBox.value.length;
+  int get totalInprogress => inprogressBox.value.length;
+  int get totalComplete => completeBox.value.length;
+  int get totalTask => totalTodo + totalInprogress + totalComplete;
+
+  changeStatus(String toSection, String fromSection, Task? data, int index) {
+    // print(todoBox.value.getAt(0));
+    // print(inprogressBox.value.getAt(0));
+    // print(completeBox.value.getAt(0));
+    if (toSection == fromSection) {
+      return;
+    } else {
+      print("change status");
+      deleteTask(fromSection, index);
+      switch (toSection) {
+        case kTodo:
+          todoBox.value.add(data!);
+          break;
+        case kInprogress:
+          inprogressBox.value.add(data!);
+          break;
+        default:
+          completeBox.value.add(data!);
+          break;
+      }
+      update();
+    }
   }
 }

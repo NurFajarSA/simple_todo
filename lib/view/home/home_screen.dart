@@ -1,12 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:simple_todo/common/constant.dart';
+import 'package:simple_todo/view/home/controller/home_controller.dart';
 import 'package:simple_todo/view/home/widgets/header.dart';
 import 'package:simple_todo/view/home/widgets/section_task.dart';
-import 'package:simple_todo/widgets/custom_fab.dart';
+import 'package:simple_todo/widgets/button/custom_fab.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key);
+  final _controller = Get.find<HomeController>();
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +88,9 @@ class HomeScreen extends StatelessWidget {
                 Icons.add_circle_rounded,
                 color: kWhite,
               ),
-              onPressed: () {},
+              onPressed: () {
+                _controller.createTask();
+              },
             ),
           ),
         ),

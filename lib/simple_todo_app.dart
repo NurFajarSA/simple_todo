@@ -28,7 +28,8 @@ class _SimpleTodoAppState extends State<SimpleTodoApp> {
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
         statusBarColor: kPrimaryColor,
-        statusBarBrightness: Brightness.dark,
+        statusBarBrightness: Brightness.light,
+        statusBarIconBrightness: Brightness.light,
       ),
     );
 

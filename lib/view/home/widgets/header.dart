@@ -8,7 +8,7 @@ class Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 174,
+        height: 180,
         color: kWhitebg,
         child: Stack(children: [
           Image.asset(
@@ -18,7 +18,7 @@ class Header extends StatelessWidget {
           Positioned(
               top: kDefaultPadding * 3 / 2,
               width: MediaQuery.of(context).size.width,
-              child: CardHeader()),
+              child: const CardHeader()),
         ]));
   }
 }

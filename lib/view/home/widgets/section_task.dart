@@ -14,28 +14,39 @@ class SectionTask extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Box<Task> data = homeController.getData(section: section);
-    return Container(
-      color: kWhitebg,
-      child: Column(
-        children: [
-          ValueListenableBuilder(
-              valueListenable: data.listenable(),
-              builder: (context, Box tasks, _) {
-                if (tasks.isEmpty) {
-                  return const EmptyState();
-                } else {
-                  return ListView.builder(
-                      shrinkWrap: true,
-                      physics: const ClampingScrollPhysics(),
-                      itemCount: data.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return CardTask(data: data.getAt(index));
-                      });
-                }
-              }),
-        ],
-      ),
+    final Rx<Box<Task>> data = homeController.getData(section: section);
+    return ListView(
+      children: [
+        Container(
+          color: kWhitebg,
+          child: Column(
+            children: [
+              ValueListenableBuilder(
+                  valueListenable: data.value.listenable(),
+                  builder: (context, Box tasks, _) {
+                    if (tasks.isEmpty) {
+                      return const EmptyState();
+                    } else {
+                      return Container(
+                        margin:
+                            const EdgeInsets.only(bottom: kDefaultPadding * 4),
+                        child: ListView.builder(
+                            shrinkWrap: true,
+                            physics: const ClampingScrollPhysics(),
+                            itemCount: data.value.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return CardTask(
+                                  data: data.value.getAt(index),
+                                  index: index,
+                                  section: section);
+                            }),
+                      );
+                    }
+                  }),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

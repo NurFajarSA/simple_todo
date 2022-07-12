@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
 import 'package:simple_todo/common/constant.dart';
+import 'package:simple_todo/model/task/task.dart';
 import 'package:simple_todo/view/home/controller/home_controller.dart';
 
-class CardHeader extends StatelessWidget {
-  CardHeader({Key? key}) : super(key: key);
-  final _controller = Get.find<HomeController>();
+class CardHeader extends StatefulWidget {
+  const CardHeader({Key? key}) : super(key: key);
+
+  @override
+  State<CardHeader> createState() => _CardHeaderState();
+}
+
+class _CardHeaderState extends State<CardHeader> {
+  final HomeController _controller = Get.find<HomeController>();
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +36,11 @@ class CardHeader extends StatelessWidget {
                   style:
                       kHeading.copyWith(color: kPrimaryColor, fontSize: 16.0),
                 ),
-                // TODO ; Add total task count
-                Text('${_controller.totalTask()} Task',
-                    style: kHeading.copyWith(
-                        color: kPrimaryColor, fontSize: 16.0)),
+                Obx(
+                  () => Text('${_controller.totalTask} Task',
+                      style: kHeading.copyWith(
+                          color: kPrimaryColor, fontSize: 16.0)),
+                ),
               ],
             ),
             Padding(
@@ -48,7 +57,7 @@ class CardHeader extends StatelessWidget {
                 children: [
                   task(
                     title: 'To Do',
-                    count: _controller.countTodo(),
+                    box: _controller.todoBox,
                     color: kDanger,
                   ),
                   VerticalDivider(
@@ -57,7 +66,7 @@ class CardHeader extends StatelessWidget {
                   ),
                   task(
                     title: 'In Progress',
-                    count: _controller.countInprogress(),
+                    box: _controller.inprogressBox,
                     color: kWarning,
                   ),
                   VerticalDivider(
@@ -66,7 +75,7 @@ class CardHeader extends StatelessWidget {
                   ),
                   task(
                     title: 'Complete',
-                    count: _controller.countComplete(),
+                    box: _controller.completeBox,
                     color: kSuccess,
                   ),
                 ],
@@ -77,15 +86,18 @@ class CardHeader extends StatelessWidget {
   }
 }
 
-Widget task({required String title, required int count, required Color color}) {
+Widget task(
+    {required String title, required Rx<Box<Task>> box, required Color color}) {
   return SizedBox(
     width: 80,
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
-          count.toString(),
-          style: kSubHeading.copyWith(color: color, fontSize: 32),
+        Obx(
+          () => Text(
+            box.value.length.toString(),
+            style: kSubHeading.copyWith(color: color, fontSize: 32),
+          ),
         ),
         Text(
           title,

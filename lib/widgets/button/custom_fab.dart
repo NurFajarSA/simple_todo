@@ -7,14 +7,14 @@ class CustomFab extends StatelessWidget {
       : super(key: key);
   final title;
   final Icon icon;
-  final Function onPressed;
+  final Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 56,
       child: FloatingActionButton.extended(
-        onPressed: () {},
+        onPressed: onPressed,
         backgroundColor: kPrimaryColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(kDefaultPadding / 3 * 2),

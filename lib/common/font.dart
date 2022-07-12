@@ -8,7 +8,7 @@ const kHeading = TextStyle(
 
 const kSubHeading = TextStyle(
   fontFamily: 'poppins-semibold',
-  fontSize: 12.0,
+  fontSize: 14.0,
   fontWeight: FontWeight.w600,
 );
 

@@ -6,7 +6,8 @@ import 'package:simple_todo/model/task/task.dart';
 import 'package:simple_todo/view/home/controller/home_controller.dart';
 
 class CardHeader extends StatefulWidget {
-  const CardHeader({Key? key}) : super(key: key);
+  const CardHeader({Key? key, required this.stream}) : super(key: key);
+  final Stream stream;
 
   @override
   State<CardHeader> createState() => _CardHeaderState();
@@ -14,6 +15,18 @@ class CardHeader extends StatefulWidget {
 
 class _CardHeaderState extends State<CardHeader> {
   final HomeController _controller = Get.find<HomeController>();
+
+  @override
+  void initState() {
+    super.initState();
+    widget.stream.listen((data) {
+      mySetState();
+    });
+  }
+
+  void mySetState() {
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +50,8 @@ class _CardHeaderState extends State<CardHeader> {
                       kHeading.copyWith(color: kPrimaryColor, fontSize: 16.0),
                 ),
                 Obx(
-                  () => Text('${_controller.totalTask} Task',
+                  () => Text(
+                      '${_controller.todoBox.value.length + _controller.inprogressBox.value.length + _controller.completeBox.value.length} Task',
                       style: kHeading.copyWith(
                           color: kPrimaryColor, fontSize: 16.0)),
                 ),

@@ -13,7 +13,6 @@ class SimpleTodoApp extends StatefulWidget {
 }
 
 class _SimpleTodoAppState extends State<SimpleTodoApp> {
-
   @override
   void initState() {
     super.initState();

@@ -10,6 +10,7 @@ class CreateTaskController extends GetxController {
 
   addDummyTask() {
     todoBox.add(Task(name: "Task 1", status: kTodo));
+    streamController.add('add');
     print(todoBox.length);
     Get.back();
   }

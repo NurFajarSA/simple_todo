@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:simple_todo/common/constant.dart';
 import 'package:simple_todo/view/home/widgets/card_header.dart';
@@ -18,7 +20,9 @@ class Header extends StatelessWidget {
           Positioned(
               top: kDefaultPadding * 3 / 2,
               width: MediaQuery.of(context).size.width,
-              child: const CardHeader()),
+              child: CardHeader(
+                stream: streamController.stream,
+              )),
         ]));
   }
 }

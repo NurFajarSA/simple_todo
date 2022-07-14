@@ -5,9 +5,9 @@ import 'package:simple_todo/model/task/task.dart';
 import 'package:simple_todo/utils/route.dart';
 
 class HomeController extends GetxController {
-  final todoBox = Hive.box<Task>(kTodo).obs;
-  final inprogressBox = Hive.box<Task>(kInprogress).obs;
-  final completeBox = Hive.box<Task>(kComplete).obs;
+  final Rx<Box<Task>> todoBox = Hive.box<Task>(kTodo).obs;
+  final Rx<Box<Task>> inprogressBox = Hive.box<Task>(kInprogress).obs;
+  final Rx<Box<Task>> completeBox = Hive.box<Task>(kComplete).obs;
 
   Rx<Box<Task>> getData({required String section}) {
     switch (section) {
@@ -36,31 +36,21 @@ class HomeController extends GetxController {
   }
 
   deleteTask(String section, int index) {
-    if (section == null)
-      return;
-    else if (section == kTodo) {
+    if (section == kTodo) {
       todoBox.value.deleteAt(index);
     } else if (section == kInprogress) {
       inprogressBox.value.deleteAt(index);
     } else {
       completeBox.value.deleteAt(index);
     }
+    streamController.add('delete');
     update();
   }
 
-  int get totalTodo => todoBox.value.length;
-  int get totalInprogress => inprogressBox.value.length;
-  int get totalComplete => completeBox.value.length;
-  int get totalTask => totalTodo + totalInprogress + totalComplete;
-
   changeStatus(String toSection, String fromSection, Task? data, int index) {
-    // print(todoBox.value.getAt(0));
-    // print(inprogressBox.value.getAt(0));
-    // print(completeBox.value.getAt(0));
     if (toSection == fromSection) {
       return;
     } else {
-      print("change status");
       deleteTask(fromSection, index);
       switch (toSection) {
         case kTodo:
@@ -73,6 +63,7 @@ class HomeController extends GetxController {
           completeBox.value.add(data!);
           break;
       }
+      streamController.add('delete');
       update();
     }
   }

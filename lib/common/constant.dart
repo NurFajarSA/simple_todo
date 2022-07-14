@@ -18,5 +18,3 @@ var kShadow = BoxShadow(
   blurRadius: kDefaultPadding / 3,
   offset: const Offset(0, kDefaultPadding / 5),
 );
-
-final StreamController streamController = StreamController();

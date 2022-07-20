@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:simple_todo/controller/stream_controller.dart';
 import 'package:simple_todo/view/create_task/create_task_binding.dart';
 import 'package:simple_todo/view/create_task/create_task_screen.dart';
 import 'package:simple_todo/view/home/home_binding.dart';
@@ -16,11 +17,15 @@ var route = [
     name: splashRoute,
     page: () => const SplashScreen(),
     binding: SplashBinding(),
+    transition: Transition.fade,
   ),
   GetPage(name: homeRoute, page: () => HomeScreen(), binding: HomeBinding()),
   GetPage(
     name: createTaskRoute,
-    page: () => CreateTaskScreen(),
+    page: () => CreateTaskScreen(
+      stream: createTaskStreamController.stream,
+    ),
     binding: CreateTaskBinding(),
+    transition: Transition.downToUp,
   )
 ];

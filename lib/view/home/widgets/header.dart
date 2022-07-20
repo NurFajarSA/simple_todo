@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:simple_todo/common/constant.dart';
 import 'package:simple_todo/controller/stream_controller.dart';
@@ -22,7 +20,7 @@ class Header extends StatelessWidget {
               top: kDefaultPadding * 3 / 2,
               width: MediaQuery.of(context).size.width,
               child: CardHeader(
-                stream: streamController.stream,
+                stream: headerStreamController.stream,
               )),
         ]));
   }

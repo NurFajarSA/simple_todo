@@ -34,6 +34,20 @@ class _SimpleTodoAppState extends State<SimpleTodoApp> {
 
     return GetMaterialApp(
       title: "SimpleTodo",
+      theme: Theme.of(context).copyWith(
+          colorScheme: const ColorScheme(
+        brightness: Brightness.light,
+        primary: kPrimaryColor,
+        onPrimary: kWhite,
+        secondary: kPrimaryColor,
+        onSecondary: kDark,
+        background: kWhitebg,
+        onBackground: kDark,
+        onSurface: kDark,
+        surface: kWhite,
+        error: kDanger,
+        onError: kWhite,
+      )),
       getPages: route,
       initialBinding: InitialBindings(),
       initialRoute: splashRoute,

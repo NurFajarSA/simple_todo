@@ -19,10 +19,10 @@ class TaskAdapter extends TypeAdapter<Task> {
     return Task(
       id: fields[0] as int?,
       name: fields[1] as String,
-      dateRange: fields[2] as DateTimeRange?,
-      startTime: fields[3] as TimeOfDay?,
-      endTime: fields[4] as TimeOfDay?,
-      status: fields[5] as String?,
+      dateRange: fields[2] as String?,
+      startTime: fields[3] as String?,
+      endTime: fields[4] as String?,
+      status: fields[5] as String,
       description: fields[6] as String?,
     );
   }

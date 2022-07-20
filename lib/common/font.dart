@@ -14,12 +14,12 @@ const kSubHeading = TextStyle(
 
 const kBodyPoppins = TextStyle(
   fontFamily: 'poppins-regular',
-  fontSize: 12.0,
+  fontSize: 14.0,
   fontWeight: FontWeight.w400,
 );
 
 const kBodyInter = TextStyle(
   fontFamily: 'inter-regular',
-  fontSize: 12.0,
+  fontSize: 14.0,
   fontWeight: FontWeight.w400,
 );

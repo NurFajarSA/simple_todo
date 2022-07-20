@@ -44,7 +44,7 @@ class HomeController extends GetxController {
     } else {
       completeBox.value.deleteAt(index);
     }
-    streamController.add('delete');
+    headerStreamController.add('delete');
     update();
   }
 
@@ -64,7 +64,7 @@ class HomeController extends GetxController {
           completeBox.value.add(data!);
           break;
       }
-      streamController.add('delete');
+      headerStreamController.add('delete');
       update();
     }
   }

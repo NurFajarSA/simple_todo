@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:simple_todo/common/constant.dart';
 import 'package:simple_todo/model/task/task.dart';
 import 'package:simple_todo/view/home/controller/home_controller.dart';
-import 'package:simple_todo/view/home/widgets/card_header.dart';
+import 'package:simple_todo/view/widgets/button/pop_up_status.dart';
 
 class CardTask extends StatelessWidget {
   CardTask(
@@ -43,83 +43,7 @@ class CardTask extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      PopupMenuButton<String>(
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.circular(kDefaultPadding / 2)),
-                        onSelected: (String status) {
-                          _controller.changeStatus(
-                              status, section, data, index);
-                        },
-                        itemBuilder: ((context) => [
-                              PopupMenuItem(
-                                value: kTodo,
-                                child: Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.circle,
-                                      color: kDanger,
-                                      size: kDefaultPadding,
-                                    ),
-                                    const SizedBox(
-                                      width: kDefaultPadding / 2,
-                                    ),
-                                    Text(
-                                      'To Do',
-                                      style: kSubHeading.copyWith(
-                                          color: kDark,
-                                          fontFamily: 'poppins-regular'),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              PopupMenuItem(
-                                value: kInprogress,
-                                child: Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.circle,
-                                      color: kWarning,
-                                      size: kDefaultPadding,
-                                    ),
-                                    const SizedBox(
-                                      width: kDefaultPadding / 2,
-                                    ),
-                                    Text(
-                                      'In Progress',
-                                      style: kSubHeading.copyWith(
-                                          color: kDark,
-                                          fontFamily: 'poppins-regular'),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              PopupMenuItem(
-                                value: kComplete,
-                                child: Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.circle,
-                                      color: kSuccess,
-                                      size: kDefaultPadding,
-                                    ),
-                                    const SizedBox(
-                                      width: kDefaultPadding / 2,
-                                    ),
-                                    Text(
-                                      'Complete',
-                                      style: kSubHeading.copyWith(
-                                          color: kDark,
-                                          fontFamily: 'poppins-regular'),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ]),
-                        tooltip: 'Change Status',
-                        icon: Image.asset(_controller.getIcon(section)),
-                        padding: const EdgeInsets.all(0),
-                      ),
+                      PopUpStatus(section: section, data: data, index: index),
                       const SizedBox(width: kDefaultPadding),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -142,7 +66,7 @@ class CardTask extends StatelessWidget {
                     icon: const Icon(Icons.delete),
                     color: kDanger,
                     onPressed: () {
-                      _controller.deleteTask(section, index);
+                      showCustomDialog(context);
                     },
                   ),
                 ],
@@ -151,4 +75,68 @@ class CardTask extends StatelessWidget {
           ),
         ));
   }
+
+  void showCustomDialog(BuildContext context) => showDialog(
+      context: context,
+      builder: (_) => Dialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(28),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(kDefaultPadding),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(
+                    Icons.delete,
+                    color: kDanger,
+                    size: 42,
+                  ),
+                  const SizedBox(height: kDefaultPadding / 2),
+                  const Text(
+                    "Delete task?",
+                    style: kSubHeading,
+                  ),
+                  const SizedBox(height: kDefaultPadding / 2),
+                  const Text(
+                    "Are you sure want to delete this task?",
+                    style: kBodyInter,
+                  ),
+                  const Text(
+                    "You can’t undo this action.",
+                    style: kBodyInter,
+                  ),
+                  const SizedBox(height: kDefaultPadding / 2),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          _controller.deleteTask(section, index);
+                          Get.back();
+                        },
+                        child: SizedBox(
+                            height: 32,
+                            width: 94,
+                            child: Center(
+                                child: Text("Delete",
+                                    style:
+                                        kSubHeading.copyWith(color: kDanger)))),
+                      ),
+                      TextButton(
+                        onPressed: () => Get.back(),
+                        child: const SizedBox(
+                            height: 32,
+                            width: 94,
+                            child: Center(
+                                child: Text("Close", style: kSubHeading))),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ));
 }

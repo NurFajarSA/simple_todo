@@ -1,12 +1,10 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:simple_todo/common/constant.dart';
 import 'package:simple_todo/view/home/controller/home_controller.dart';
 import 'package:simple_todo/view/home/widgets/header.dart';
 import 'package:simple_todo/view/home/widgets/section_task.dart';
-import 'package:simple_todo/widgets/button/custom_fab.dart';
+import 'package:simple_todo/view/widgets/button/custom_fab.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -72,7 +70,7 @@ class HomeScreen extends StatelessWidget {
                       indicatorColor: kWhite,
                       indicatorWeight: 1.0,
                     ),
-                    Header(),
+                    const Header(),
                   ],
                 ),
               ),

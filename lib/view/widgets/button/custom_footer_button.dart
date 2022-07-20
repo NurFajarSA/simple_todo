@@ -1,0 +1,35 @@
+import 'package:flutter/material.dart';
+import 'package:simple_todo/common/constant.dart';
+
+class CustomFooterButton extends StatelessWidget {
+  const CustomFooterButton(
+      {Key? key, required this.label, required this.onPressed})
+      : super(key: key);
+  final String label;
+  final Function() onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 44,
+      margin: const EdgeInsets.all(kDefaultPadding / 2),
+      child: ElevatedButton(
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(kPrimaryColor),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0)))),
+          onPressed: onPressed,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                label,
+                style: kSubHeading.copyWith(color: kWhite),
+              )
+            ],
+          )),
+    );
+  }
+}

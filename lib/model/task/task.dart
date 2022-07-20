@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
 part 'task.g.dart';
@@ -14,16 +13,16 @@ class Task extends HiveObject {
   String name;
 
   @HiveField(2)
-  DateTimeRange? dateRange;
+  String? dateRange;
 
   @HiveField(3)
-  TimeOfDay? startTime;
+  String? startTime;
 
   @HiveField(4)
-  TimeOfDay? endTime;
+  String? endTime;
 
   @HiveField(5)
-  String? status;
+  String status;
 
   @HiveField(6)
   String? description;
@@ -34,7 +33,7 @@ class Task extends HiveObject {
       this.dateRange,
       this.startTime,
       this.endTime,
-      this.status,
+      required this.status,
       this.description}) {
     id = ++taskId;
   }

@@ -236,6 +236,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "intl",
+      "rootUri": "file:///usr/local/Caskroom/flutter/3.0.2/flutter/.pub-cache/hosted/pub.dartlang.org/intl-0.17.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "io",
       "rootUri": "file:///usr/local/Caskroom/flutter/3.0.2/flutter/.pub-cache/hosted/pub.dartlang.org/io-1.0.3",
       "packageUri": "lib/",
@@ -380,6 +386,12 @@
       "languageVersion": "2.14"
     },
     {
+      "name": "rxdart",
+      "rootUri": "file:///usr/local/Caskroom/flutter/3.0.2/flutter/.pub-cache/hosted/pub.dartlang.org/rxdart-0.27.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "shelf",
       "rootUri": "file:///usr/local/Caskroom/flutter/3.0.2/flutter/.pub-cache/hosted/pub.dartlang.org/shelf-1.3.1",
       "packageUri": "lib/",
@@ -506,7 +518,7 @@
       "languageVersion": "2.17"
     }
   ],
-  "generated": "2022-07-12T09:24:02.300772Z",
+  "generated": "2022-07-20T05:38:45.539777Z",
   "generator": "pub",
   "generatorVersion": "2.17.5"
 }

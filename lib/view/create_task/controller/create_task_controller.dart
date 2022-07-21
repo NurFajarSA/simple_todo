@@ -75,8 +75,10 @@ class CreateTaskController extends GetxController {
       firstDate: DateTime(DateTime.now().year - 5),
       lastDate: DateTime(DateTime.now().year + 5),
     );
-    taskDateController.text =
-        '${DateFormat('dd/MM/yyyy').format(date!.start)} - ${DateFormat('dd/MM/yyyy').format(date.end)}';
+    if (date != null) {
+      taskDateController.text =
+          '${DateFormat('dd/MM/yyyy').format(date!.start)} - ${DateFormat('dd/MM/yyyy').format(date.end)}';
+    }
   }
 
   chooseTime({required BuildContext context, required String type}) async {

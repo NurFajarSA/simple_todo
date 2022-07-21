@@ -32,8 +32,12 @@ class HomeController extends GetxController {
     }
   }
 
-  createTask() {
+  gotoCreateTask() {
     Get.toNamed(createTaskRoute);
+  }
+
+  gotoAboutDev() {
+    Get.toNamed(aboutDevRoute);
   }
 
   deleteTask(String section, int index) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:simple_todo/common/constant.dart';
 import 'package:simple_todo/view/create_task/controller/create_task_controller.dart';
@@ -39,6 +40,11 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
     controller.taskStatusController.text = '${popUp.status.capitalize}';
     return Scaffold(
       appBar: AppBar(
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          statusBarColor: kPrimaryColor,
+          statusBarBrightness: Brightness.light,
+          statusBarIconBrightness: Brightness.light,
+        ),
         iconTheme: const IconThemeData(
           color: kDark,
         ),

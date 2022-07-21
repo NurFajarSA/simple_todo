@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:simple_todo/common/constant.dart';
 import 'package:simple_todo/view/home/controller/home_controller.dart';
@@ -19,6 +20,11 @@ class HomeScreen extends StatelessWidget {
           length: 3,
           child: Scaffold(
             appBar: AppBar(
+              systemOverlayStyle: const SystemUiOverlayStyle(
+                statusBarColor: kPrimaryColor,
+                statusBarBrightness: Brightness.light,
+                statusBarIconBrightness: Brightness.light,
+              ),
               shadowColor: Colors.transparent,
               backgroundColor: kPrimaryColor,
               title: Row(
@@ -39,7 +45,9 @@ class HomeScreen extends StatelessWidget {
                   child: IconButton(
                     icon: Image.asset('assets/icons/person_icon.png'),
                     color: kWhite,
-                    onPressed: () {},
+                    onPressed: () {
+                      _controller.gotoAboutDev();
+                    },
                   ),
                 ),
               ],
@@ -89,7 +97,7 @@ class HomeScreen extends StatelessWidget {
                 color: kWhite,
               ),
               onPressed: () {
-                _controller.createTask();
+                _controller.gotoCreateTask();
               },
             ),
           ),

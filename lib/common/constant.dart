@@ -4,7 +4,9 @@ part 'color.dart';
 part 'font.dart';
 
 const kAppName = 'SimpleTodo';
-const kNewUser = 'Nur Fajar';
+const kDevName = 'Nur Fajar Sayyidul Ayyam';
+const kDevRole = 'Mobile Developer - UI/UX Designer';
+const kDevUrl = 'https://biolinky.co/nfajarsa';
 const kDefaultPadding = 18.0;
 const kTodo = 'TO DO';
 const kInprogress = 'IN PROGRESS';

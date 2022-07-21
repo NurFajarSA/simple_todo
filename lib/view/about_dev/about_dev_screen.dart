@@ -59,8 +59,7 @@ class AboutDevScreen extends StatelessWidget {
                       Text('Description'.toUpperCase(),
                           style: kSubHeading.copyWith(color: kDark)),
                       const SizedBox(height: kDefaultPadding / 2),
-                      Text(
-                          'An Information systems student at Universitas Indonesia is entering the first semester, a person who never stops learning about technology, structured, trying new things, improving themselves in challenges, taking opportunities that come, and always trying to exceed boundaries.',
+                      Text(kDevDesc,
                           style: kBodyPoppins.copyWith(
                               color: kDark.withOpacity(0.8)),
                           textAlign: TextAlign.justify),

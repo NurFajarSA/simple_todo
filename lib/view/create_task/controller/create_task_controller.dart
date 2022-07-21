@@ -77,7 +77,7 @@ class CreateTaskController extends GetxController {
     );
     if (date != null) {
       taskDateController.text =
-          '${DateFormat('dd/MM/yyyy').format(date!.start)} - ${DateFormat('dd/MM/yyyy').format(date.end)}';
+          '${DateFormat('dd/MM/yyyy').format(date.start)} - ${DateFormat('dd/MM/yyyy').format(date.end)}';
     }
   }
 

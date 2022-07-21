@@ -2,14 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:simple_todo/common/constant.dart';
+import 'package:simple_todo/controller/stream_controller.dart';
 import 'package:simple_todo/view/home/controller/home_controller.dart';
 import 'package:simple_todo/view/home/widgets/header.dart';
 import 'package:simple_todo/view/home/widgets/section_task.dart';
 import 'package:simple_todo/view/widgets/button/custom_fab.dart';
 
-class HomeScreen extends StatelessWidget {
-  HomeScreen({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final _controller = Get.find<HomeController>();
+  final Stream stream = cardTaskStreamController.stream;
+
+  @override
+  void initState() {
+    super.initState();
+    stream.listen((data) {
+      mySetState();
+    });
+  }
+
+  void mySetState() {
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {

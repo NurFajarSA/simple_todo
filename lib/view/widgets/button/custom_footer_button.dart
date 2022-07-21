@@ -3,15 +3,16 @@ import 'package:simple_todo/common/constant.dart';
 
 class CustomFooterButton extends StatelessWidget {
   const CustomFooterButton(
-      {Key? key, required this.label, required this.onPressed})
+      {Key? key, required this.label, required this.onPressed, this.width})
       : super(key: key);
   final String label;
   final Function() onPressed;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
+      width: width ?? double.infinity,
       height: 44,
       margin: const EdgeInsets.all(kDefaultPadding / 2),
       child: ElevatedButton(

@@ -40,6 +40,10 @@ class HomeController extends GetxController {
     Get.toNamed(aboutDevRoute);
   }
 
+  gotoDetailTask(Task? data, int index) {
+    Get.toNamed(detailTaskRoute, arguments: {'task': data, 'index': index});
+  }
+
   deleteTask(String section, int index) {
     if (section == kTodo) {
       todoBox.value.deleteAt(index);
@@ -59,12 +63,15 @@ class HomeController extends GetxController {
       deleteTask(fromSection, index);
       switch (toSection) {
         case kTodo:
+          data?.status = kTodo;
           todoBox.value.add(data!);
           break;
         case kInprogress:
+          data?.status = kInprogress;
           inprogressBox.value.add(data!);
           break;
         default:
+          data?.status = kComplete;
           completeBox.value.add(data!);
           break;
       }

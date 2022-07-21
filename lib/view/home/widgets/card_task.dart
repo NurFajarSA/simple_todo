@@ -1,21 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:simple_todo/common/constant.dart';
+import 'package:simple_todo/controller/stream_controller.dart';
 import 'package:simple_todo/model/task/task.dart';
 import 'package:simple_todo/view/home/controller/home_controller.dart';
 import 'package:simple_todo/view/widgets/button/pop_up_status.dart';
 
-class CardTask extends StatelessWidget {
-  CardTask(
-      {Key? key,
-      required this.data,
-      required this.index,
-      required this.section})
+class CardTask extends StatefulWidget {
+  const CardTask(
+      {Key? key, this.data, required this.index, required this.section})
       : super(key: key);
   final Task? data;
   final int index;
   final String section;
+
+  @override
+  State<CardTask> createState() => _CardTaskState();
+}
+
+class _CardTaskState extends State<CardTask> {
   final _controller = Get.find<HomeController>();
+  final stream = cardTaskStreamController.stream;
+
+  @override
+  void initState() {
+    super.initState();
+    stream.listen((data) {
+      mySetState();
+    });
+  }
+
+  void mySetState() {
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +48,9 @@ class CardTask extends StatelessWidget {
           child: InkWell(
             borderRadius: BorderRadius.circular(kDefaultPadding / 2),
             onTap: () {
-              // TODO: implement
-              Get.snackbar('Task', 'Soon',
-                  colorText: kDark, backgroundColor: kWhite.withOpacity(0.5));
+              _controller.gotoDetailTask(widget.data, widget.index);
+              // Get.snackbar('Task', 'Soon',
+              //     colorText: kDark, backgroundColor: kWhite.withOpacity(0.5));
             },
             child: Padding(
               padding: const EdgeInsets.fromLTRB(kDefaultPadding,
@@ -43,18 +60,21 @@ class CardTask extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      PopUpStatus(section: section, data: data, index: index),
+                      PopUpStatus(
+                          section: widget.section,
+                          data: widget.data,
+                          index: widget.index),
                       const SizedBox(width: kDefaultPadding),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "${data?.name}",
+                            "${widget.data?.name}",
                             style: kSubHeading.copyWith(color: kDark),
                           ),
                           Text(
-                            "${data?.dateRange.toString()}",
+                            "${widget.data?.dateRange.toString()}",
                             style: kBodyInter.copyWith(color: kDark),
                           ),
                         ],
@@ -114,7 +134,7 @@ class CardTask extends StatelessWidget {
                     children: [
                       TextButton(
                         onPressed: () {
-                          _controller.deleteTask(section, index);
+                          _controller.deleteTask(widget.section, widget.index);
                           Get.back();
                         },
                         child: SizedBox(

@@ -156,7 +156,7 @@ class _DetailTaskScreenState extends State<DetailTaskScreen> {
               },
             ),
             Container(
-              margin: EdgeInsets.only(right: kDefaultPadding / 2),
+              margin: const EdgeInsets.only(right: kDefaultPadding / 2),
               child: IconButton(
                 onPressed: () => showCustomDialog(context),
                 icon: const Icon(
